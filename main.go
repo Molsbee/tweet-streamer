@@ -21,7 +21,7 @@ func main() {
 	app.Before = func(ctx *cli.Context) error {
 		credentials, err := credentialsService.Get()
 		if err != nil || credentials == nil || !credentials.IsValid() {
-			if ctx.Command.Name != command.SET_CREDENTIALS {
+			if ctx.Args().Get(0) != command.SET_CREDENTIALS {
 				return fmt.Errorf("please setup credentials before using")
 			}
 		}
